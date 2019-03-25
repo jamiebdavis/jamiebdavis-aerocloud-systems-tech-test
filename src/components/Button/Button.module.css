@@ -1,11 +1,19 @@
 .Btn {
-  background-color: #555555;
-  border: none;
-  color: white;
+  background-color: white;
+
+  border-color: #555555;
+  color: #555555;
   padding: 15px;
   text-align: center;
-  text-decoration: none;
+  text-decoration: bold;
   display: inline-block;
   font-size: 16px;
   border-radius: 5px;
+  margin: 10px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover {
+  background-color: #555555;
+  color: white;
 }
