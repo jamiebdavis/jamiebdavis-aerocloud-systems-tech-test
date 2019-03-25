@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Toolbar.module.css";
+import Button from "../Button/Button";
 
 const Toolbar = () => {
   return (
@@ -7,7 +8,9 @@ const Toolbar = () => {
       <i class="material-icons">hotel</i>
       <h3>AeroCloud Systems Technical Test</h3>
       <a href="/">
-        <button>Reset</button>
+        <Button value="Refresh Page" onClick="window.location.reload()">
+          Reset
+        </Button>
       </a>
     </header>
   );
