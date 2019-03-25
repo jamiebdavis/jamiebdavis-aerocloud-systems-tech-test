@@ -15,7 +15,32 @@ const completeHotelList = [
 class App extends Component {
   state = {
     hotels: completeHotelList,
-    searchInput: ""
+    searchInput: "",
+    resultsFiltered: false
+  };
+
+  handleRefresh = () => {
+    this.setState({
+      hotels: completeHotelList,
+      resultsFiltered: false,
+      searchInput: ""
+    });
+  };
+
+  handleFacilitiesFilter = () => {
+    let hotels = [...this.state.hotels];
+    if (hotels) {
+      let filteredHotels = hotels.map(hotel => {
+        if (hotel.facilities.includes(this.state.searchInput)) {
+          return hotel;
+        }
+      });
+      this.setState({ hotels: filteredHotels, resultsFiltered: true });
+    }
+  };
+
+  handleChange = e => {
+    this.setState({ searchInput: e.target.value });
   };
 
   handleStarSortASC = () => {
@@ -51,6 +76,17 @@ class App extends Component {
     return (
       <div className="App">
         <Toolbar />
+        <p>
+          {this.state.resultsFiltered ? (
+            <button onClick={this.handleRefresh}>Reset Results:</button>
+          ) : (
+            <button onClick={this.handleFacilitiesFilter}>
+              Filter by facilities:
+            </button>
+          )}
+
+          <input onChange={this.handleChange} value={this.state.searchInput} />
+        </p>
         <Button clicked={this.handleStarSortASC}>Sort by Stars ASC</Button>
         <Button clicked={this.handleStarSortDESC}>Sort by Stars DESC</Button>
         <br />
